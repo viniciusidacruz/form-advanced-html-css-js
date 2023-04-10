@@ -15,12 +15,13 @@
 
     <link rel="stylesheet" href="css/styles.css" />
   </head>
+
   <body>
     <form>
       <section id="credit-card">
         <div class="front">
-          <div class="header-front">
-            <img src="assets/svg/flag-visa.svg" alt="Bandeira da Visa" />
+          <div class="flex align-center space-between">
+            <img src="assets/svg/question.svg" alt="Ícone de interrogação" id="flags" />
             <img
               src="assets/svg/contactless-payment.svg"
               alt="Ícone de aproximação"
@@ -28,20 +29,21 @@
           </div>
 
           <div class="content-front">
-            <div class="numbers">**** **** **** ****</div>
+            <div class="numbers" id="number-card">**** **** **** ****</div>
 
-            <div class="footer-front">
-              <span id="name-card">Seu nome aqui</span>
+            <div class="footer-front flex align-center space-between">
+              <span id="name-card" class="text-small">Seu nome aqui</span>
 
-              <span id="validity-card">**/**</span>
+              <span id="validity-card" class="text-small">**/**</span>
             </div>
           </div>
         </div>
+
         <div class="back">
           <div class="line"></div>
 
-          <div class="flex content-back">
-            <div class="wrapper-cvv">
+          <div class="flex content-back align-center space-between text-small">
+            <div class="flex wrapper-cvv align-center border-rouded">
               <span id="cvv-card">***</span>
             </div>
 
@@ -50,18 +52,20 @@
         </div>
       </section>
 
-      <section class="inputs flex">
+      <section class="inputs flex mt-4">
         <div class="input-wrapper">
-          <label for="cc-number">Número do cartão</label>
+          <label for="cc-number" class="text-small">Número do cartão</label>
 
           <input
             required
             type="text"
             id="cc-number"
+            class="border-rouded"
+            onkeyup="detectCardBrand()"
             placeholder="**** **** **** ****"
           />
 
-          <div class="warning">
+          <div class="warning text-small flex align-center">
             <img src="assets/svg/warning.svg" alt="Ícone de alerta" />
 
             Número do cartão obrigatório.
@@ -69,16 +73,17 @@
         </div>
 
         <div class="input-wrapper">
-          <label for="cc-holder">Nome do titular</label>
+          <label for="cc-holder" class="text-small">Nome do titular</label>
 
           <input
             required
             type="text"
             id="cc-holder"
+            class="border-rouded"
             placeholder="SEU NOME AQUI"
           />
 
-          <div class="warning">
+          <div class="warning text-small flex align-center">
             <img src="assets/svg/warning.svg" alt="Ícone de alerta" />
 
             Nome do titular obrigatório.
@@ -87,11 +92,17 @@
 
         <div class="col-2 flex">
           <div class="input-wrapper">
-            <label for="cc-validity">Validade</label>
+            <label for="cc-validity" class="text-small">Validade</label>
 
-            <input type="text" id="cc-validity" placeholder="mm/aa" required />
+            <input
+              required
+              type="text"
+              id="cc-validity"
+              placeholder="mm/aa"
+              class="border-rouded"
+            />
 
-            <div class="warning">
+            <div class="warning text-small flex align-center">
               <img src="assets/svg/warning.svg" alt="Ícone de alerta" />
 
               Validade do cartão obrigatório.
@@ -99,7 +110,7 @@
           </div>
 
           <div class="input-wrapper">
-            <label for="cc-cvv" class="flex help"
+            <label for="cc-cvv" class="flex help text-small align-center"
               >CVV
               <img
                 alt="Icone de ajuda"
@@ -108,9 +119,15 @@
               />
             </label>
 
-            <input type="text" id="cc-cvv" placeholder="***" required />
+            <input
+              required
+              type="text"
+              id="cc-cvv"
+              placeholder="***"
+              class="border-rouded"
+            />
 
-            <div class="warning">
+            <div class="warning text-small flex align-center">
               <img src="assets/svg/warning.svg" alt="Ícone de alerta" />
 
               CVV obrigatório.
@@ -119,7 +136,7 @@
         </div>
       </section>
 
-      <section class="info-security flex">
+      <section class="info-security flex mt-4 text-small">
         <img
           src="assets/svg/shield-check.svg"
           alt="Ícone seus dados estão seguros"
@@ -128,7 +145,7 @@
         Seus dados estão seguros
       </section>
 
-      <button type="submit">Adicionar Cartão</button>
+      <button type="submit" class="border-rouded">Adicionar Cartão</button>
     </form>
 
     <script src="https://unpkg.com/imask"></script>

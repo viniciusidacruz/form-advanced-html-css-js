@@ -59,6 +59,11 @@ var { content: cvvCard, field: fieldCvvCard } = handleChangeField(
   "cc-cvv"
 );
 
+var { content: numberCard, field: fieldNumberCard } = handleChangeField(
+  "number-card",
+  "cc-number"
+);
+
 var backCard = document.querySelector(".back");
 var frontCard = document.querySelector(".front");
 var fieldCvvCard = document.getElementById("cc-cvv");
@@ -84,3 +89,30 @@ fieldValidityCard.addEventListener("input", function () {
 fieldCvvCard.addEventListener("input", function () {
   cvvCard.innerHTML = fieldCvvCard.value || "***";
 });
+
+fieldNumberCard.addEventListener("input", function () {
+  numberCard.innerHTML = fieldNumberCard.value || "**** **** **** ****";
+});
+
+function detectCardBrand() {
+  const cardNumber = document.getElementById("cc-number").value;
+  let cardBrand;
+
+  if (cardNumber.startsWith("4")) {
+    cardBrand = "visa";
+  } else if (cardNumber.startsWith("5") && parseInt(cardNumber[1]) >= 1 && parseInt(cardNumber[1]) <= 5) {
+    cardBrand = "master";
+  } else if (cardNumber.startsWith("3") && (cardNumber[1] === "4" || cardNumber[1] === "7")) {
+    cardBrand = "amex";
+  }
+
+  if (cardBrand) {
+    const cardImage = document.getElementById("flags");
+    cardImage.src = `assets/svg/flag-${cardBrand}.svg`;
+    cardImage.alt = `Bandeira ${cardBrand}`
+  } else {
+    const cardImage = document.getElementById("flags");
+    cardImage.src = `assets/svg/question.svg`;
+    cardImage.alt = 'Ícone de interrogação'
+  }
+}

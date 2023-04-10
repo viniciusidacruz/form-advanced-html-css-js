@@ -9,10 +9,23 @@
 
 :root {
   font-size: 62.5%;
+
+  --gray-50: #f9fafb;
+  --gray-100: #e5e7eb;
+  --gray-150: #f3f4f6;
+  --gray-200: #d1d5db;
+  --gray-700: #374151;
+  --gray-800: #111827;
+  --gray-900: #1f2937;
+
+  --primary-default: #a855f7;
+  --primary-dark: #9333ea;
+
+  --warning: #fb7185;
 }
 
 body {
-  background-color: #1f2937;
+  background-color: var(--gray-900);
 }
 
 body,
@@ -34,12 +47,32 @@ form {
   display: flex;
 }
 
+.align-center {
+  align-items: center;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
 .col-2 {
   gap: 2.4rem;
 }
 
+.border-rouded {
+  border-radius: .4rem;
+}
+
+.mt-4 {
+  margin-top: 4.8rem;
+}
+
 .col-2 .input-wrapper:nth-child(1) {
   flex-basis: 80%;
+}
+
+.text-small {
+  font-size: 1.4rem;
 }
 
 /* Card */
@@ -77,28 +110,20 @@ form {
   transform: rotateY(0);
 }
 
-#credit-card .header-front {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
 #credit-card .content-front {
   margin-top: 4rem;
 }
 
+#credit-card .content-front .numbers {
+  color: var(--gray-50);
+}
+
 #credit-card .footer-front {
   margin-top: 2.4rem;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 }
 
 #credit-card .footer-front span {
-  font-size: 1.4rem;
-
-  color: #f9fafb;
+  color: var(--gray-50);
 }
 
 #credit-card .back {
@@ -112,7 +137,7 @@ form {
   width: 100%;
   height: 3.2rem;
 
-  background-color: #111827;
+  background-color: var(--gray-800);
 }
 
 #credit-card .back .content-back {
@@ -121,8 +146,21 @@ form {
 
   width: 100%;
 
-  align-items: center;
-  justify-content: space-between;
+  gap: .8rem;
+
+  color: var(--gray-100);
+}
+
+#credit-card .back .wrapper-cvv {
+  background-color: var(--gray-200);
+  color: var(--gray-800);
+
+  width: 100%;
+  height: 3.2rem;
+
+  padding: 0 1.2rem;
+
+  justify-content: flex-end;
 }
 
 #credit-card:active .front,
@@ -137,20 +175,16 @@ form {
 
 /* Inputs */
 .inputs {
-  margin-top: 4.8rem;
-
   flex-direction: column;
   gap: 2.4rem;
 }
 
 label {
   font-weight: 600;
-  font-size: 1.4rem;
 
-  color: #e5e7eb;
+  color: var(--gray-100);
 
   gap: 0.4rem;
-  align-items: center;
 }
 
 input {
@@ -159,15 +193,30 @@ input {
 
   width: 100%;
 
-  border: 0.1rem solid #374151;
-  border-radius: 0.4rem;
+  border: 0.1rem solid var(--gray-700);
 
-  color: #f3f4f6;
-  background-color: #111827;
+  color: var(--gray-150);
+  background-color: var(--gray-800);
 }
 
 input:focus {
-  outline: 0.15rem solid #9333ea;
+  outline: 0.15rem solid var(--primary-dark);
+}
+
+input:invalid:focus {
+  border: 0.15rem solid var(--warning);
+}
+
+input + .warning {
+  display: none;
+}
+
+input:invalid:focus + .warning {
+  margin-top: 0.8rem;
+
+  color: var(--warning);
+
+  gap: 0.4rem;
 }
 
 .help img {
@@ -177,34 +226,10 @@ input:focus {
 
 /* Security Data */
 .info-security {
-  margin-top: 4.8rem;
-
   gap: 0.8rem;
   justify-content: center;
 
-  font-size: 1.4rem;
-
-  color: #e5e7eb;
-}
-
-input:invalid:focus {
-  border: 0.15rem solid #fb7185;
-}
-
-input + .warning {
-  display: none;
-}
-
-input:invalid:focus + .warning {
-  font-size: 1.4rem;
-
-  margin-top: 0.8rem;
-
-  color: #fb7185;
-
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
+  color: var(--gray-100);
 }
 
 /* Button */
@@ -213,12 +238,11 @@ button {
   padding: 1.6rem;
 
   border: 0;
-  border-radius: 0.4rem;
 
   width: 100%;
 
-  background-color: #9333ea;
-  color: #f9fafb;
+  background-color: var(--primary-dark);
+  color: var(--gray-50);
   box-shadow: 0rem 0.4rem 1.6rem rgba(0, 0, 0, 0.1);
 
   font-weight: 600;
@@ -231,5 +255,5 @@ button {
 }
 
 button:hover {
-  background-color: #a855f7;
+  background-color: var(--primary-default);
 }
